@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" width="250" height="150" xmlns:components="com.fusionwidgets.components.*"
+		  verticalAlign="middle"
+		  horizontalAlign="center"
+		  >
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var _xmlDataText:String;
+			
+			[Bindable]
+			private var _desc:String;
+			
+			public function get xmlDataText():String
+			{
+				return _xmlDataText;
+			}
+			
+			public function set xmlDataText(value:String):void
+			{
+				_xmlDataText = value;
+			}
+			
+			public function get desc():String
+			{
+				return _desc;
+			}
+			
+			public function set desc(value:String):void
+			{
+				_desc = value;
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<components:FusionWidgets id="angularGaugeWidget" width="100%" height="90%" FCDataXML="{_xmlDataText}" FCChartType="AngularGauge"/>
+	<s:Label id="descLabel" text="{_desc}"/>
+</s:VGroup>

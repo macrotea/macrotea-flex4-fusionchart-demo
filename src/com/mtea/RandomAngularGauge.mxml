@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+
+	<fx:Script>
+		<![CDATA[
+			import cn.ac.iscas.gz.sems.chart.service.ChartService;
+			import cn.ac.iscas.gz.sems.chart.vo.AngularGaugeChartConfigVo;
+			
+			import mx.events.FlexEvent;
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var showTimer:Timer = new Timer(1000, 1000);
+				showTimer.addEventListener(TimerEvent.TIMER, showHandler);
+				showTimer.start();
+			}
+			
+			private function showHandler(e:TimerEvent):void {
+				var currentValue:int = Math.floor(Math.random() * 100);
+				
+				var max:int = 100;
+				var min:int = 0;
+				
+				var angularGaugeChartConfigVo:AngularGaugeChartConfigVo = new AngularGaugeChartConfigVo();
+				angularGaugeChartConfigVo.upperLimit = max;
+				angularGaugeChartConfigVo.lowerLimit = min;
+				angularGaugeChartConfigVo.currentValue = currentValue;
+				angularGaugeChartConfigVo.width = 200;
+				angularGaugeChartConfigVo.height = 180;
+				angularGaugeChartConfigVo.chartDesc = "仪表盘 " + currentValue;
+				
+				var chartService:ChartService = new ChartService();
+				chartService.showAngularGaugeBoxIn(container,angularGaugeChartConfigVo);
+			}
+
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				var showTimer:Timer = new Timer(1000, 1000);
+				showTimer.addEventListener(TimerEvent.TIMER, showHandler);
+				showTimer.start();
+			}
+
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:VGroup x="0" y="0" width="100%" height="100%">
+		<s:HGroup width="100%" height="10%" verticalAlign="middle" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">
+			<!-- 
+			<s:Button label="随机添加仪表盘" click="button1_clickHandler(event)"/>
+			-->
+		</s:HGroup>
+		<s:HGroup id="container" width="100%" height="90%" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">
+		</s:HGroup>
+	</s:VGroup>
+</s:Application>

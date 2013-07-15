@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)" xmlns:components="com.fusionwidgets.components.*" xmlns:components2="com.fusioncharts.components.*">
+	<fx:Script>
+		<![CDATA[
+			import com.fusionwidgets.components.FusionWidgets;
+			
+			import mx.events.FlexEvent;
+			
+			private var preparedXmlData1:XML = <chart palette='4' lowerLimit='-50' upperLimit='10' numberSuffix='° C'>
+									  	<value>-40</value> 
+									  </chart>;
+			
+			private var preparedXmlData2:XML = <chart 
+											palette="3" 
+											bgColor="FFFFFF" 
+											thmFillColor="99FF99" 
+											bgAlpha="0"
+											lowerLimit="-40" 
+											upperLimit="120" 
+											numberSuffix=" C" 
+											majorTMHeight="4"
+											minorTMNumber="5" 
+											chartTopMargin="25" 
+											chartLeftMargin="20"
+											thmbulbRadius="20"
+											showBorder="0" 
+											useSameFillColor="0" 
+											showTickValues="1"
+											decimalPrecision="1" 
+											ticksOnRight='1' 
+											>
+											<value>78.9</value>
+										</chart>;
+			
+			private var xmlDataText:String;
+			
+			private var fw1:FusionWidgets;
+
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				fw1=new FusionWidgets();
+				
+				xmlDataText = preparedXmlData1.toXMLString();
+				var fw1:FusionWidgets=new FusionWidgets();
+				fw1.FCChartType="Thermometer";
+				fw1.FCDataXML=xmlDataText;
+				
+				hg2.addElement(fw1);
+			}
+
+			protected function changeButton_clickHandler(event:MouseEvent):void
+			{
+				xmlDataText = preparedXmlData2.toXMLString();
+				// NOTICE liangqiye@gz.iscas.ac.cn / 2013-6-6 13:50:22 竟然null
+				fw1.FCDataXML=xmlDataText;
+			}
+
+		]]>
+	</fx:Script>
+	<s:VGroup id="vg1" width="100%" height="100%" x="0" y="0">
+		<s:HGroup id="hg1" width="100%" height="10%" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">
+			<s:Button id="changeButton" label="改变" click="changeButton_clickHandler(event)"/>
+		</s:HGroup>
+		<s:HGroup id="hg2" width="100%" height="90%" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">
+		</s:HGroup>
+	</s:VGroup>
+</s:Application>

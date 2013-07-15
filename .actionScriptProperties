@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="com/mtea/AngularGauge.mxml" projectUUID="0b5aac96-5e9c-4943-bebe-251408b7b0fe" version="6">
+  <compiler additionalCompilerArguments="-locale zh_CN" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="true" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="com/mtea/RandomThermometer2.mxml"/>
+    <application path="com/mtea/RandomThermometer3.mxml"/>
+    <application path="com/mtea/Thermometer3.mxml"/>
+    <application path="com/mtea/Thermometer.mxml"/>
+    <application path="com/mtea/RandomThermometer5.mxml"/>
+    <application path="com/mtea/RandomThermometer4.mxml"/>
+    <application path="com/mtea/RandomAngularGauge.mxml"/>
+    <application path="com/mtea/RandomThermometer.mxml"/>
+    <application path="com/mtea/AngularGauge.mxml"/>
+    <application path="com/mtea/Thermometer2.mxml"/>
+    <application path="com/mtea/RandomThermometer6.mxml"/>
+  </applications>
+  <modules/>
+  <buildCSSFiles/>
+</actionScriptProperties>
+

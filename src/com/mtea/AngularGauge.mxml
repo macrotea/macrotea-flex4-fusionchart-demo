@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)" 
+			   xmlns:components="com.fusionwidgets.components.*" 
+			   >
+	<fx:Script>
+		<![CDATA[
+			import com.fusionwidgets.components.FusionWidgets;
+			
+			import mx.events.FlexEvent;
+			
+			private var xmlData:XML = <chart lowerLimit='0' upperLimit='100' gaugeStartAngle='180' gaugeEndAngle='0' palette='1' numberSuffix='%' tickValueDistance='20' showValue='1'>
+										   <colorRange>
+										      <color minValue='0' maxValue='75' code='FF654F'/>
+										      <color minValue='75' maxValue='90' code='F6BD0F'/>
+										      <color minValue='90' maxValue='100' code='8BBA00'/>
+										   </colorRange>
+										   <dials>
+										      <dial value='92' rearExtension='10'/>
+										   </dials>
+										</chart>;
+			[Bindable]
+			private var xmlDataText:String;
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				xmlDataText = xmlData.toXMLString();
+				trace(xmlDataText);
+				
+				var fw1:FusionWidgets=new FusionWidgets();
+				fw1.FCChartType="AngularGauge";
+				fw1.FCDataXML=xmlDataText;
+				//vGroup.addElement(fw1);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:HGroup id="vGroup" width="100%" height="100%" x="0" y="0" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">
+		<!--
+		<components:FusionWidgets FCDataURL="angular-gauge-data.xml" FCChartType="AngularGauge" FCDebugMode="true"/>
+		-->
+		<components:FusionWidgets FCUseDefaultData="true" FCChartType="AngularGauge" FCDebugMode="false"/>
+	</s:HGroup>
+</s:Application>

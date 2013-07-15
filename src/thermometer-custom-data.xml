@@ -1,0 +1,52 @@
+<!-- 
+// NOTICE liangqiye@gz.iscas.ac.cn / 2013-6-6 11:15:19 说明:
+
+1.有些0或者1表示布尔类型
+	0: false
+	1: true
+
+2.numberSuffix='° C' 会出现乱码
+
+3.bgAlpha要设置成100才能出现背景颜色,否则透明
+-->
+
+<chart 
+	palette="3" 
+	bgColor="FFFFFF" 
+	thmFillColor="99FF99" 
+	bgAlpha="0"
+	lowerLimit="-40" 
+	upperLimit="120" 
+	numberSuffix=" C" 
+	majorTMHeight="4"
+	minorTMNumber="5" 
+	chartTopMargin="25" 
+	chartLeftMargin="20"
+	thmbulbRadius="20"
+	showBorder="0" 
+	useSameFillColor="0" 
+	showTickValues="1"
+	decimalPrecision="1" 
+	ticksOnRight='1' 
+	>
+	<value>78.9</value>
+</chart>
+
+<!--  
+颜色 16进制对照表:
+http://www.blogjava.net/zks518/archive/2011/08/12/356409.html
+-->
+<!--
+<components:FusionWidgets FCUseDefaultData="true" FCChartType="Thermometer" FCDebugMode="true"/>
+默认生成的配置文件:
+
+<chart palette="3" bgColor="FFFFFF" thmFillColor="FF5904"
+	bgAlpha="0" showBorder="0" lowerLimit="0" upperLimit="100"
+	lowerLimitDisplay="Low" upperLimitDisplay="High" numberSuffix="%25"
+	majorTMHeight="4" minorTMNumber="5" useSameFillColor="0"
+	showTickValues="1" decimalPrecision="0" chartTopMargin="25"
+	chartLeftMargin="20" thmbulbRadius="10">
+	<value>78.9</value>
+</chart>
+-->
+

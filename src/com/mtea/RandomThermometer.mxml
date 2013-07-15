@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+
+	<fx:Script>
+		<![CDATA[
+			import cn.ac.iscas.gz.sems.chart.service.ChartService;
+			import cn.ac.iscas.gz.sems.chart.ColorValueAndNumberRangeMapping;
+			import cn.ac.iscas.gz.sems.chart.vo.ThermometerChartConfigVo;
+			
+			import com.fusionwidgets.components.FusionWidgets;
+			
+			import mx.controls.Label;
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var showTimer:Timer = new Timer(1000, 1000);
+				showTimer.addEventListener(TimerEvent.TIMER, showHandler);
+				showTimer.start();
+			}
+			
+			private function showHandler(e:TimerEvent):void {
+				var currentValue:int = Math.floor(Math.random() * 100);
+				
+				if(currentValue%2==0){
+					currentValue = -currentValue;
+				}
+				
+				var max:int = 100;
+				var min:int = -100;
+				
+				var thermometerChartConfigVo:ThermometerChartConfigVo = new ThermometerChartConfigVo();
+				thermometerChartConfigVo.upperLimit = max;
+				thermometerChartConfigVo.lowerLimit = min;
+				thermometerChartConfigVo.currentValue = currentValue;
+				thermometerChartConfigVo.themeFillColor = ColorValueAndNumberRangeMapping.getColorByNumber(max,min,currentValue);
+				
+				var chartService:ChartService = new ChartService();
+				var thermometerWidget:FusionWidgets = chartService.createThermometerChart(thermometerChartConfigVo);
+				
+				var label:Label = new Label();
+				label.text = "名字: " + currentValue;
+				
+				var vg:VGroup = new VGroup();
+				vg.verticalAlign = "middle";
+				vg.horizontalAlign = "center";
+				
+				vg.addElement(thermometerWidget);
+				vg.addElement(label);
+				
+				container.addElement(vg);
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:VGroup x="0" y="0" width="100%" height="100%">
+		<s:HGroup width="100%" height="10%" verticalAlign="middle" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">
+			<s:Button label="随机添加温度计" click="button1_clickHandler(event)"/>
+		</s:HGroup>
+		<s:HGroup id="container" width="100%" height="90%" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">
+		</s:HGroup>
+	</s:VGroup>
+</s:Application>

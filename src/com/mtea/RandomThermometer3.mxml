@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+
+	<fx:Script>
+		<![CDATA[
+			import cn.ac.iscas.gz.sems.chart.ChartTemplateDataProvider;
+			import cn.ac.iscas.gz.sems.chart.ColorValueAndNumberRangeMapping;
+			import cn.ac.iscas.gz.sems.chart.comp.ThermometerBox;
+			import cn.ac.iscas.gz.sems.chart.service.ChartService;
+			import cn.ac.iscas.gz.sems.chart.vo.ThermometerChartConfigVo;
+			
+			import com.fusionwidgets.components.FusionWidgets;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Label;
+			import mx.events.FlexEvent;
+			import mx.events.ListEvent;
+			
+			//[Bindable]
+			//private var objList:ArrayCollection = new ArrayCollection();
+			//objList.addItem(trBox);
+
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var showTimer:Timer = new Timer(1000, 1000);
+				showTimer.addEventListener(TimerEvent.TIMER, showHandler);
+				showTimer.start();
+			}
+			
+			private function showHandler(e:TimerEvent):void {
+				var currentValue:int = Math.floor(Math.random() * 100);
+				
+				if(currentValue%2==0){
+					currentValue = -currentValue;
+				}
+				
+				var max:int = 100;
+				var min:int = -100;
+				
+				var thermometerChartConfigVo:ThermometerChartConfigVo = new ThermometerChartConfigVo();
+				thermometerChartConfigVo.upperLimit = max;
+				thermometerChartConfigVo.lowerLimit = min;
+				thermometerChartConfigVo.currentValue = currentValue;
+				thermometerChartConfigVo.themeFillColor = ColorValueAndNumberRangeMapping.getColorByNumber(max,min,currentValue);
+				thermometerChartConfigVo.width = 120;
+				thermometerChartConfigVo.height = 200;
+				thermometerChartConfigVo.chartDesc = "温度计 " + currentValue;
+				
+				var chartService:ChartService = new ChartService();
+				var trBox:ThermometerBox = chartService.createThermometerBox(thermometerChartConfigVo);
+				
+				thermometerTileGroup.addElement(trBox);
+				//thermometerTileList.addChild(trBox);
+				
+			}
+
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				var showTimer:Timer = new Timer(1000, 1000);
+				showTimer.addEventListener(TimerEvent.TIMER, showHandler);
+				showTimer.start();
+			}
+
+
+			protected function tileList_itemClickHandler(event:ListEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:VGroup x="0" y="0" width="100%" height="100%">
+		<s:BorderContainer width="100%" height="100%">
+			<s:TileGroup id="thermometerTileGroup" width="100%" height="100%">
+			</s:TileGroup>
+		</s:BorderContainer>
+		
+<!--		
+		<mx:TileList id="thermometerTileList"
+					 width="100%" height="50%" 
+					 selectable="true" selectedIndex="0" 
+					 itemClick="tileList_itemClickHandler(event)"
+					 direction="horizontal"
+					 >
+		</mx:TileList>
+-->
+		
+	</s:VGroup>
+</s:Application>

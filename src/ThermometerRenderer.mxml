@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true"
+				xmlns:components="com.fusionwidgets.components.*"
+				>
+	
+	<mx:VBox 
+		horizontalAlign="center" verticalAlign="middle"
+		width="100" height="200"
+		creationComplete="init(event)"
+		>
+		<fx:Script>
+			<![CDATA[
+				import cn.ac.iscas.gz.sems.chart.vo.ThermometerChartConfigVo;
+				import mx.events.FlexEvent;
+				
+				public var dataVo:ThermometerChartConfigVo;
+				
+				protected function init(event:FlexEvent):void
+				{
+					this.dataVo = data.vo;
+				}
+				
+			]]>
+			
+		</fx:Script>
+		<components:FusionWidgets id="thermometerWidget" name="thermometerWidget" width="100%" height="90%" FCDataXML="{data.xmlDataText}" FCChartType="Thermometer"/>
+		<s:Label id="descLabel" text="{data.desc}"/>
+	</mx:VBox>
+	
+</s:ItemRenderer>
